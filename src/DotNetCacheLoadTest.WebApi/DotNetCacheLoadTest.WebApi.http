@@ -1,0 +1,6 @@
+@DotNetCacheLoadTest.WebApi_HostAddress = http://localhost:5283
+
+GET {{DotNetCacheLoadTest.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

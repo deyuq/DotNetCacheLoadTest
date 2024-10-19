@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCacheLoadTest.WebApi", "DotNetCacheLoadTest.WebApi\DotNetCacheLoadTest.WebApi.csproj", "{09561D6D-4293-41AD-9CC1-D2380DAC2C61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCacheLoadTest.NBomberClient", "DotNetCacheLoadTest.NBomberClient\DotNetCacheLoadTest.NBomberClient.csproj", "{B57F624F-6074-47AC-AA49-CA1A221D11D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09561D6D-4293-41AD-9CC1-D2380DAC2C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09561D6D-4293-41AD-9CC1-D2380DAC2C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09561D6D-4293-41AD-9CC1-D2380DAC2C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09561D6D-4293-41AD-9CC1-D2380DAC2C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B57F624F-6074-47AC-AA49-CA1A221D11D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B57F624F-6074-47AC-AA49-CA1A221D11D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B57F624F-6074-47AC-AA49-CA1A221D11D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B57F624F-6074-47AC-AA49-CA1A221D11D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
