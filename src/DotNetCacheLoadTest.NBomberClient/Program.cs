@@ -1,9 +1,9 @@
 ﻿using var httpClient = new HttpClient();
-var webApiUrl = Environment.GetEnvironmentVariable("WEBAPI_URL") ?? "http://localhost:8080";
+var webApiUrl = Environment.GetEnvironmentVariable("WEBAPI_URL") ?? "http://localhost:5283";
 
-var scenario = Scenario.Create("weather_forecast_scenario", async context =>
+var scenario = Scenario.Create("redis_scenario", async context =>
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, $"{webApiUrl}/weatherforecast");
+        var request = new HttpRequestMessage(HttpMethod.Get, $"{webApiUrl}/redis/test_key");
         request.Headers.Add("Accept", "application/json");
 
         var response = await httpClient.SendAsync(request);

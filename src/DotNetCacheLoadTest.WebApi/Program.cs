@@ -1,9 +1,18 @@
+using StackExchange.Redis;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add Redis connection
+var redisConnectionString = builder.Configuration.GetValue<string>("Redis:ConnectionString")
+                            ?? Environment.GetEnvironmentVariable("REDIS_CONNECTION");
+Console.WriteLine($"{redisConnectionString}");
+var redis = ConnectionMultiplexer.Connect(redisConnectionString!);
+var db = redis.GetDatabase();
 
 var app = builder.Build();
 
@@ -16,29 +25,19 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/redis/{key}", async (string key) =>
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
+        var value = await db.StringGetAsync(key);
+        if (value.IsNullOrEmpty)
+        {
+            Console.WriteLine($"Key not found: {key}");
+            return Results.NotFound();
+        }
+
+        return Results.Ok(value.ToString());
     })
-    .WithName("GetWeatherForecast")
+    .WithName("GetRedisValue")
     .WithOpenApi();
 
+Console.WriteLine("Application started. Listening for requests...");
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

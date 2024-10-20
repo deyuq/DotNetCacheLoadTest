@@ -1,15 +1,14 @@
-version: '3.8'
-
 services:
   webapi:
     build:
       context: .
       dockerfile: DotNetCacheLoadTest.WebApi/Dockerfile
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       - ASPNETCORE_URLS=http://+:8080
       - REDIS_CONNECTION=redis:6379
+      - ASPNETCORE_ENVIRONMENT=Release
     depends_on:
       - redis
 
@@ -17,3 +16,12 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+
+  rust-api:
+    build:
+      context: .
+      dockerfile: DotNetCacheLoadTest.Rust.Api/Dockerfile
+    ports:
+      - "8082:8080"
+    environment:
+      - REDIS_CONNECTION=redis:6379
