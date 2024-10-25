@@ -4,7 +4,6 @@ use std::env;
 
 async fn get_redis_value(key: web::Path<String>, redis_client: web::Data<redis::Client>) -> impl Responder {
     let key_str = key.clone(); // Clone the key to use it later
-    println!("{}", key_str.as_str());
     let mut con = redis_client.get_async_connection().await.unwrap();
     let value: Option<String> = con.get(&key.into_inner()).await.unwrap();
     match value {
@@ -32,7 +31,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(redis_client.clone()))
             .route("/redis/{key}", web::get().to(get_redis_value))
     })
-    .bind("127.0.0.1:8080")?
+    .bind("0.0.0.0:8080")? // Bind to 0.0.0.0 for Docker
     .run()
     .await
 }

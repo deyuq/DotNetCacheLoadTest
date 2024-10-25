@@ -23,7 +23,7 @@ COPY DotNetCacheLoadTest.Rust.Api/src ./src
 RUN cargo build --release
 
 # Set the environment variable for the binary
-ENV RUST_LOG=info
+ENV RUST_LOG=debug
 
 # Expose the port that the Actix web server will run on
 EXPOSE 8080

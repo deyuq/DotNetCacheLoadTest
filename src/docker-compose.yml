@@ -24,4 +24,4 @@ services:
     ports:
       - "8082:8080"
     environment:
-      - REDIS_CONNECTION=redis:6379
+      - REDIS_CONNECTION=redis://redis:6379

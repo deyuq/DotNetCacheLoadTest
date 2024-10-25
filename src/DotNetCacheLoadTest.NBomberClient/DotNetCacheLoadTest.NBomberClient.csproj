@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <PackageReference Include="NBomber" Version="5.7.0" />
+      <PackageReference Include="NBomber.Http" Version="5.1.2" />
     </ItemGroup>
 
 </Project>

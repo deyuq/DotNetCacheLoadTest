@@ -14,10 +14,9 @@ var scenario = Scenario.Create("redis_scenario", async context =>
     })
     .WithoutWarmUp()
     .WithLoadSimulations(
-        Simulation.Inject(rate: 100,
-            interval: TimeSpan.FromSeconds(1),
-            during: TimeSpan.FromSeconds(30))
-    );
+                Simulation.Inject(rate: 600, interval: TimeSpan.FromSeconds(1), during: TimeSpan.FromSeconds(30))
+               // Simulation.Inject(rate: 1500, interval: TimeSpan.FromSeconds(1), during: TimeSpan.FromSeconds(30))
+            );
 
 NBomberRunner
     .RegisterScenarios(scenario)

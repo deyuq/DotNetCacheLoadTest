@@ -398,21 +398,18 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Terraform
-*.tfstate
-*.tfstate.*
-*.tfvars
-*.tfvars.json
-.terraform/
-.terraform.lock.hcl
-crash.log
-crash.*.log
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
-.terraformrc
-terraform.rc
+deploy/.terraform/
+deploy/*.tfstate
+deploy/*.tfstate.*
+deploy/*.tfvars
+deploy/*.tfvars.json
+deploy/.terraform.lock.hcl
+deploy/crash.log
+deploy/crash.*.log
+deploy/override.tf
+deploy/override.tf.json
+deploy/*_override.tf
+deploy/*_override.tf.json
 
 # NBomberClient Reports
-src/DotNetCacheLoadTest.NBomberClient/reports/*
-
+reports/
